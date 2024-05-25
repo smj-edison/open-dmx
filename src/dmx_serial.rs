@@ -457,7 +457,7 @@ impl DMXSerialAgent {
         self.port.clear_break()?;
         thread::sleep(Duration::from_micros(16));
 
-        let mut prefixed_data = [0; 513]; // 1 start byte + 512 channels
+        let mut prefixed_data = [0; DMX_CHANNELS + 1]; // 1 start byte + 512 channels
         prefixed_data[1..].copy_from_slice(&channels);
         self.send_data(&prefixed_data)?;
 

@@ -20,13 +20,13 @@ fn main() {
         let before = i as usize;
         let after = before + 1;
 
-        channels[before] = (i.fract() * 255.0) as u8;
-        channels[after] = ((1.0 - i.fract()) * 255.0) as u8;
+        channels[before * 3] = ((1.0 - i.fract()) * 255.0) as u8;
+        channels[after * 3] = (i.fract() * 255.0) as u8;
 
         dmx.set_channels(channels);
 
-        thread::sleep(Duration::from_millis(50));
+        thread::sleep(Duration::from_millis(20));
 
-        i = (i + 0.1) % 24.0;
+        i = (i + 0.1) % 8.0;
     }
 }
